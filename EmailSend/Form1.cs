@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Web.Script.Serialization;
 using System.IO;
 
-namespace EmailSend
+namespace EmailGenerate
 {
     public partial class Form1 : Form
     {
