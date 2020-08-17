@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("EmailSend")]
+[assembly: AssemblyTitle("EmailGenerate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EmailSend")]
+[assembly: AssemblyProduct("EmailGenerate")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("c74716da-215f-48f3-9b3d-e0e4c2414a4d")]
+[assembly: Guid("8e4967eb-ddad-43b9-9195-0f5f9309926c")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //
