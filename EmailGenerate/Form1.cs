@@ -24,6 +24,7 @@ namespace EmailGenerate
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length == 0) { MessageBox.Show("Вы не указали smtp", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (numericUpDown1.Value == 0) { MessageBox.Show("Вы не указали port", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox2.Text.Length == 0) { MessageBox.Show("Вы не указали логин", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox3.Text.Length == 0) { MessageBox.Show("Вы не указали пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox4.Text.Length == 0) { MessageBox.Show("Вы не указали e-mail отправителя", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
@@ -39,8 +40,8 @@ namespace EmailGenerate
                 Password = textBox3.Text,
                 EmailSend = textBox4.Text,
                 EmailRecipient = textBox5.Text,
-                MessTema = textBox6.Text,
-                MessText = richTextBox1.Text,
+                Subject = textBox6.Text,
+                Body = richTextBox1.Text,
             };
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
@@ -53,12 +54,19 @@ namespace EmailGenerate
         private class Data
         {
             public string Smtp { get; set; }
+            public int Port { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
             public string EmailSend { get; set; }
             public string EmailRecipient { get; set; }
-            public string MessTema { get; set; }
-            public string MessText { get; set; }
+            /// <summary>
+            /// тема
+            /// </summary>
+            public string Subject { get; set; }
+            /// <summary>
+            /// текст темы
+            /// </summary>
+            public string Body { get; set; }
         }
     }
 }
