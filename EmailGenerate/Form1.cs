@@ -21,10 +21,25 @@ namespace EmailGenerate
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (!File.Exists(file)) return;
+
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            var json = jss.Deserialize<Data>(File.ReadAllText(file));
+            textBox1.Text = json.Smtp;
+            numericUpDown1.Value = json.Port;
+            textBox2.Text = json.Email;
+            textBox3.Text = json.Password;
+            textBox4.Text = json.EmailSend;
+            textBox5.Text = json.EmailRecipient;
+            textBox6.Text = json.Subject;
+            richTextBox1.Text = json.Body;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length == 0) { MessageBox.Show("Вы не указали smtp", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            if (numericUpDown1.Value == 0) { MessageBox.Show("Вы не указали port", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox2.Text.Length == 0) { MessageBox.Show("Вы не указали логин", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox3.Text.Length == 0) { MessageBox.Show("Вы не указали пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (textBox4.Text.Length == 0) { MessageBox.Show("Вы не указали e-mail отправителя", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
@@ -36,6 +51,7 @@ namespace EmailGenerate
             Data data = new Data()
             {
                 Smtp = textBox1.Text,
+                Port = (int)numericUpDown1.Value,
                 Email = textBox2.Text,
                 Password = textBox3.Text,
                 EmailSend = textBox4.Text,
@@ -53,8 +69,8 @@ namespace EmailGenerate
 
         private class Data
         {
-            public string Smtp { get; set; }
-            public int Port { get; set; }
+            public string Smtp { get; set; } = "smtp.mail.ru";
+            public int Port { get; set; } = 25;
             public string Email { get; set; }
             public string Password { get; set; }
             public string EmailSend { get; set; }
@@ -68,5 +84,7 @@ namespace EmailGenerate
             /// </summary>
             public string Body { get; set; }
         }
+
+        
     }
 }

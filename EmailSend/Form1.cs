@@ -42,12 +42,19 @@ namespace EmailSend
                 else
                 {
                     var info = ProcessFile(file);
-                    if (info != "OK")
+                    if (info == "ERROR")
+                    {
+                        var message = MessageBox.Show($"Не удалось отправить сообщение, возникла ошибка", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (message == DialogResult.OK)
+                            this.Close();
+                    }
+                    else if (info != "OK")
                     {
                         var message = MessageBox.Show($"Проверьте все ли указанные данные верны. \nОшибка: {info}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (message == DialogResult.OK)
                             this.Close();
                     }
+                    
                 }
             }
             this.Close();
@@ -90,7 +97,7 @@ namespace EmailSend
                 Subject = data.Subject
             };
 
-            var smtpClient = new SmtpClient(data.Smtp , data.Port )
+            var smtpClient = new SmtpClient(data.Smtp, data.Port )
             {
                 Credentials = new NetworkCredential(data.Email, data.Password),
                 EnableSsl = true
@@ -103,6 +110,10 @@ namespace EmailSend
             catch (System.Net.Mail.SmtpException e)
             {
                 return e.Message;
+            }
+            catch
+            {
+                return "ERROR";
             }
         }
     }
